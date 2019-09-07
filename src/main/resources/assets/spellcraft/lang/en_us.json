@@ -1,4 +1,7 @@
 {
   "itemGroup.spellcraft": "Spellcraft",
-  "item.spellcraft.wooden_scepter": "Wooden Scepter"
+  "item.spellcraft.wooden_scepter": "Wooden Scepter",
+  "item.spellcraft.emerald_scepter": "Emerald Scepter",
+  "item.spellcraft.nether_scepter": "Nether Scepter",
+  "item.spellcraft.ender_scepter": "Ender Scepter"
 }

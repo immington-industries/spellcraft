@@ -78,8 +78,14 @@ public class Spellcraft
         @SubscribeEvent
         public static void registerItems(final RegistryEvent.Register<Item> event) {
             event.getRegistry().registerAll(
-                    new ScepterItem(ItemTier.WOOD, 2, -2.2F, new Item.Properties().group(ItemGroup.TOOLS))
-                            .setRegistryName("spellcraft:wooden_scepter")
+                new ScepterItem(ItemTier.WOOD, 2, -2.2F, new Item.Properties().group(ItemGroup.TOOLS))
+                    .setRegistryName("spellcraft:wooden_scepter"),
+                new ScepterItem(ItemTier.GOLD, 3, -2F, new Item.Properties().group(ItemGroup.TOOLS))
+                    .setRegistryName("spellcraft:emerald_scepter"),
+                new ScepterItem(ItemTier.IRON, 4, -2F, new Item.Properties().group(ItemGroup.TOOLS))
+                    .setRegistryName("spellcraft:nether_scepter"),
+                new ScepterItem(ItemTier.GOLD, 3, -2.1F, new Item.Properties().group(ItemGroup.TOOLS))
+                    .setRegistryName("spellcraft:ender_scepter")
             );
         }
     }
