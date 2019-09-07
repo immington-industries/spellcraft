@@ -1,0 +1,6 @@
+{
+  "parent": "spellcraft:item/scepter",
+  "textures": {
+    "layer0": "spellcraft:items/ocean_scepter"
+  }
+}
