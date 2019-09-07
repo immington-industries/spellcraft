@@ -9,8 +9,8 @@ import net.minecraft.item.SwordItem;
  *
  * Keeps the sword's ability to break cobwebs.
  */
-public class StaffItem extends SwordItem {
-    public StaffItem(IItemTier tier, int attackDamage, float attackSpeed, Item.Properties propertiesBuilder) {
+public class ScepterItem extends SwordItem {
+    public ScepterItem(IItemTier tier, int attackDamage, float attackSpeed, Item.Properties propertiesBuilder) {
         super(tier, attackDamage, attackSpeed, propertiesBuilder);
     }
 }
