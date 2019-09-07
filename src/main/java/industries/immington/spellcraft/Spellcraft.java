@@ -1,11 +1,9 @@
 package industries.immington.spellcraft;
 
-import net.minecraft.block.Block;
+import industries.immington.spellcraft.item.ScepterItem;
 import net.minecraft.block.Blocks;
 import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.item.AxeItem;
-import net.minecraft.item.Item;
-import net.minecraft.item.Items;
+import net.minecraft.item.*;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -31,7 +29,7 @@ public class Spellcraft
     // public static CreativeTabs SPELLCRAFT_CREATIVE_TAB = null; // new SpellcraftCreativeTab();
 
     /** Mod logger instance */
-    private static final Logger LOGGER = LogManager.getLogger(Spellcraft.MOD_ID);
+    static final Logger LOGGER = LogManager.getLogger(Spellcraft.MOD_ID);
 
     public Spellcraft() {
         // Register the setup method for modloading
@@ -46,17 +44,15 @@ public class Spellcraft
         MinecraftForge.EVENT_BUS.register(this);
     }
 
-    private void setup(final FMLCommonSetupEvent event)
-    {
+    private void setup(final FMLCommonSetupEvent event) {
         // some preinit code
         LOGGER.info("HELLO FROM PREINIT SPELLCRAFT!!!");
         LOGGER.info("DIRT BLOCK >> {}", Blocks.DIRT.getRegistryName());
         LOGGER.info("Stone axe: {}",
-                ((AxeItem)Items.STONE_AXE).getAttributeModifiers(EquipmentSlotType.MAINHAND));
+                ((SwordItem)Items.STONE_SWORD).getAttributeModifiers(EquipmentSlotType.MAINHAND));
     }
 
     private void doClientStuff(final FMLClientSetupEvent event) {
-        // do something that can only be done on the client
         LOGGER.info("Got game settings {}", event.getMinecraftSupplier().get().gameSettings);
     }
 
@@ -65,16 +61,13 @@ public class Spellcraft
     }
 
     private void processIMC(final InterModProcessEvent event) {
-        // some example code to receive and process InterModComms from other mods
         LOGGER.info("Got IMC {}", event.getIMCStream().
                 map(m->m.getMessageSupplier().get()).
                 collect(Collectors.toList()));
     }
-    // You can use SubscribeEvent and let the Event Bus discover methods to call
+
     @SubscribeEvent
-    public void onServerStarting(FMLServerStartingEvent event) {
-        // do something when the server starts
-        LOGGER.info("HELLO from server starting");
+    public void onServerStarting(final FMLServerStartingEvent event) {
     }
 
     /**
@@ -83,16 +76,20 @@ public class Spellcraft
     @Mod.EventBusSubscriber(bus=Mod.EventBusSubscriber.Bus.MOD)
     public static class RegistryEvents {
         @SubscribeEvent
-        public static void registerBlocks(final RegistryEvent.Register<Block> event) {
-            // register a new block here
-            LOGGER.info("HELLO from Register Block");
-        }
-
-        @SubscribeEvent
         public static void registerItems(final RegistryEvent.Register<Item> event) {
-            LOGGER.info("HELLO from Register Item");
             event.getRegistry().registerAll(
-
+                new ScepterItem(ItemTier.WOOD, 2, -2.2F, new Item.Properties().group(ItemGroup.TOOLS))
+                    .setRegistryName("spellcraft:wooden_scepter"),
+                new ScepterItem(ItemTier.WOOD, 3, -2F, new Item.Properties().group(ItemGroup.TOOLS))
+                    .setRegistryName("spellcraft:undead_scepter"),
+                new ScepterItem(ItemTier.WOOD, 3, -2.1F, new Item.Properties().group(ItemGroup.TOOLS))
+                    .setRegistryName("spellcraft:ocean_scepter"),
+                new ScepterItem(ItemTier.GOLD, 3, -2F, new Item.Properties().group(ItemGroup.TOOLS))
+                    .setRegistryName("spellcraft:emerald_scepter"),
+                new ScepterItem(ItemTier.IRON, 4, -2F, new Item.Properties().group(ItemGroup.TOOLS))
+                    .setRegistryName("spellcraft:nether_scepter"),
+                new ScepterItem(ItemTier.GOLD, 3, -2.1F, new Item.Properties().group(ItemGroup.TOOLS))
+                    .setRegistryName("spellcraft:ender_scepter")
             );
         }
     }
