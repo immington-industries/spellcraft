@@ -1,8 +1,8 @@
 package industries.immington.spellcraft;
 
-import industries.immington.spellcraft.item.StaffItem;
 import industries.immington.spellcraft.spell.Spell;
 import industries.immington.spellcraft.spell.SpellDomain;
+import industries.immington.spellcraft.item.ScepterItem;
 import net.minecraft.block.Blocks;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.*;
@@ -69,7 +69,7 @@ public class Spellcraft
         LOGGER.info("HELLO FROM PREINIT SPELLCRAFT!!!");
         LOGGER.info("DIRT BLOCK >> {}", Blocks.DIRT.getRegistryName());
         LOGGER.info("Stone axe: {}",
-                ((AxeItem)Items.STONE_AXE).getAttributeModifiers(EquipmentSlotType.MAINHAND));
+                ((SwordItem)Items.STONE_SWORD).getAttributeModifiers(EquipmentSlotType.MAINHAND));
     }
 
     private void doClientStuff(final FMLClientSetupEvent event) {
@@ -98,8 +98,18 @@ public class Spellcraft
         @SubscribeEvent
         public static void registerItems(final RegistryEvent.Register<Item> event) {
             event.getRegistry().registerAll(
-                    new StaffItem(ItemTier.WOOD, 2, 0.85F, new Item.Properties().group(ItemGroup.TOOLS))
-                            .setRegistryName("spellcraft:wooden_staff")
+                new ScepterItem(ItemTier.WOOD, 2, -2.2F, new Item.Properties().group(ItemGroup.TOOLS))
+                    .setRegistryName("spellcraft:wooden_scepter"),
+                new ScepterItem(ItemTier.WOOD, 3, -2F, new Item.Properties().group(ItemGroup.TOOLS))
+                    .setRegistryName("spellcraft:undead_scepter"),
+                new ScepterItem(ItemTier.WOOD, 3, -2.1F, new Item.Properties().group(ItemGroup.TOOLS))
+                    .setRegistryName("spellcraft:ocean_scepter"),
+                new ScepterItem(ItemTier.GOLD, 3, -2F, new Item.Properties().group(ItemGroup.TOOLS))
+                    .setRegistryName("spellcraft:emerald_scepter"),
+                new ScepterItem(ItemTier.IRON, 4, -2F, new Item.Properties().group(ItemGroup.TOOLS))
+                    .setRegistryName("spellcraft:nether_scepter"),
+                new ScepterItem(ItemTier.GOLD, 3, -2.1F, new Item.Properties().group(ItemGroup.TOOLS))
+                    .setRegistryName("spellcraft:ender_scepter")
             );
         }
 

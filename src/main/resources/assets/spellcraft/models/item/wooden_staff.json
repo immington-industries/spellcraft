@@ -1,6 +1,0 @@
-{
-  "parent": "spellcraft:item/staff",
-  "textures": {
-    "layer0": "spellcraft:items/wooden_staff"
-  }
-}
