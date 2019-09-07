@@ -1,9 +1,12 @@
 package industries.immington.spellcraft;
 
 import industries.immington.spellcraft.item.StaffItem;
+import industries.immington.spellcraft.spell.Spell;
+import industries.immington.spellcraft.spell.SpellDomain;
 import net.minecraft.block.Blocks;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.*;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -14,6 +17,8 @@ import net.minecraftforge.fml.event.lifecycle.InterModEnqueueEvent;
 import net.minecraftforge.fml.event.lifecycle.InterModProcessEvent;
 import net.minecraftforge.fml.event.server.FMLServerStartingEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.minecraftforge.registries.IForgeRegistry;
+import net.minecraftforge.registries.RegistryBuilder;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -25,6 +30,21 @@ public class Spellcraft
 {
     /** Spellcraft mod ID. */
     public static final String MOD_ID = "spellcraft";
+
+    public static class SpellDomains {
+        public static final SpellDomain REDSTONE = new SpellDomain("spellcraft:redstone");
+        public static final SpellDomain UNDEAD = new SpellDomain("spellcraft:redstone");
+        public static final SpellDomain LIFE = new SpellDomain("spellcraft:life");
+        public static final SpellDomain ILLAGER = new SpellDomain("spellcraft:illager");
+        public static final SpellDomain OCEAN = new SpellDomain("spellcraft:ocean");
+        public static final SpellDomain NETHER = new SpellDomain("spellcraft:nether");
+        public static final SpellDomain ENDER = new SpellDomain("spellcraft:ender");
+    }
+
+    public static class Registries {
+        public static IForgeRegistry<SpellDomain> domains;
+        public static IForgeRegistry<Spell> spells;
+    }
 
     // public static CreativeTabs SPELLCRAFT_CREATIVE_TAB = null; // new SpellcraftCreativeTab();
 
@@ -81,6 +101,22 @@ public class Spellcraft
                     new StaffItem(ItemTier.WOOD, 2, 0.85F, new Item.Properties().group(ItemGroup.TOOLS))
                             .setRegistryName("spellcraft:wooden_staff")
             );
+        }
+
+        @SubscribeEvent
+        public static void registerRegistries(final RegistryEvent.NewRegistry event) {
+            Registries.spells = new RegistryBuilder<Spell>()
+                    .allowModification()
+                    .setDefaultKey(new ResourceLocation("spellcraft:empty"))
+                    .setType(Spell.class)
+                    .setName(new ResourceLocation("spellcraft:spells"))
+                    .create();
+            Registries.domains = new RegistryBuilder<SpellDomain>()
+                    .allowModification()
+                    .setDefaultKey(new ResourceLocation("spellcraft:empty"))
+                    .setType(SpellDomain.class)
+                    .setName(new ResourceLocation("spellcraft:domains"))
+                    .create();
         }
     }
 }
