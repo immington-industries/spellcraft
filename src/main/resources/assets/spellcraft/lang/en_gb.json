@@ -1,5 +1,14 @@
 {
   "itemGroup.spellcraft": "Spellcraft",
+
+  "domain.spellcraft.life": "Domain of Life",
+  "domain.spellcraft.undead": "Domain of Undead",
+  "domain.spellcraft.illager": "Domain of the Illager",
+  "domain.spellcraft.ocean": "Domain of the Ocean",
+  "domain.spellcraft.redstone": "Domain of Redstone",
+  "domain.spellcraft.nether": "Domain of the Nether",
+  "domain.spellcraft.ender": "Domain of the End",
+
   "item.spellcraft.wooden_scepter": "Wooden Sceptre",
   "item.spellcraft.undead_scepter": "Undead Sceptre",
   "item.spellcraft.emerald_scepter": "Emerald Sceptre",
